@@ -8,7 +8,9 @@ import IconWeather from "@/components/IconWeather.vue";
 
 <template>
   <div class="grid place-content-center h-screen">
-    <div class="bg-slate-800 space-y-5 rounded-3xl px-10 py-14">
+    <div
+      class="bg-slate-800 space-y-5 rounded-3xl px-10 py-14 shadow-2xl shadow-slate-500"
+    >
       <row>
         <city-weather />
         <icon-weather />
