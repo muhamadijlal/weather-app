@@ -7,14 +7,20 @@ import IconWeather from "@/components/IconWeather.vue";
 import { useStateStore } from "@/store/useStateStore";
 import { storeToRefs } from "pinia";
 import Skeleton from "@/widget/components/Skeleton.vue";
+import connectionError from "@/components/handleErrors/connectionError.vue";
+import is400 from "@/components/handleErrors/is400.vue";
 
-const { loading, location, current, error, errMsg } = storeToRefs(
-  useStateStore()
-);
+const { loading, location, current, error } = storeToRefs(useStateStore());
 </script>
 
 <template>
-  <div
+  <connection-error
+    v-show="error.response === 'ERR_NETWORK'"
+    :errMsg="error.errMsg"
+  />
+
+  <is400 v-show="error.response === 400" :errMsg="error.errMsg" />
+  <!-- <div
     v-if="error"
     class="grid place-content-center place-items-center h-screen bg-slate-100 space-y-5"
   >
@@ -26,7 +32,7 @@ const { loading, location, current, error, errMsg } = storeToRefs(
     <h4 class="font-bold text-2xl text-gray-500">
       {{ errMsg }}
     </h4>
-  </div>
+  </div> -->
 
   <Skeleton v-if="loading" />
 
