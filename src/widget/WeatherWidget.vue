@@ -30,12 +30,19 @@ const { loading, location, current, error, errMsg } = storeToRefs(
 
   <Skeleton v-if="loading" />
 
-  <div v-else class="grid bg-gray-300 place-content-center h-screen space-y-10">
-    <SearchCountry />
-
     <div
-      class="bg-slate-800 space-y-5 rounded-3xl px-10 py-14 shadow-2xl shadow-slate-500"
+      class="bg-slate-100 max-w-2xl h-96 rounded-3xl px-10 py-14 shadow-2xl shadow-slate-500 space-y-8"
     >
+      <row>
+        <city-weather
+          :location-country="location.country"
+          :location-name="location.name"
+          :weather-condition="current.condition.text"
+        />
+
+        <icon-weather :weather-icon="current.condition.icon" />
+      </row>
+
       <row>
         <city-weather
           :location-name="weather.location.name"
@@ -44,7 +51,6 @@ const { loading, location, current, error, errMsg } = storeToRefs(
 
         <icon-weather :weather-icon="weather.current.condition.icon" />
       </row>
-
       <footer class="text-end text-slate-400 font-light">
         {{ weather.current.last_updated }}
       </footer>
