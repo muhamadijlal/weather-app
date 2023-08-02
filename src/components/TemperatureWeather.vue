@@ -1,3 +1,3 @@
 <template>
-  <h4 class="text-[10rem] font-bold text-slate-100">19°C</h4>
+  <h4 class="text-8xl font-bold text-slate-800">{{ tempC }}°C</h4>
 </template>
