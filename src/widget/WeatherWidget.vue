@@ -30,10 +30,7 @@ const { loading, location, current, error, errMsg } = storeToRefs(
 
   <Skeleton v-if="loading" />
 
-  <div
-    v-else
-    class="grid bg-gray-300 place-content-center h-screen space-y-10 gap"
-  >
+  <div v-else class="grid bg-gray-300 place-content-center h-screen space-y-10">
     <SearchCountry />
 
     <div
