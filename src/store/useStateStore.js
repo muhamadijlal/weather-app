@@ -23,8 +23,22 @@ export const useStateStore = defineStore("weather", {
             response: response.status,
           };
         })
-        .catch((response) => {
-          console.log(response);
+        .catch((err) => {
+          this.error = is400(err);
+          if (is400(err) || is403(err) || is401(err) || is404(err)) {
+            this.$state.error = {
+              response: err.response.status,
+              errMsg: err.message,
+            };
+          } else {
+            this.$state.error = {
+              response: err.code,
+              errMsg: err.message,
+            };
+          }
+        })
+        .finally(() => {
+          this.loading = false;
         });
     },
   },

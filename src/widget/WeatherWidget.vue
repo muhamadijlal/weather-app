@@ -7,8 +7,8 @@ import IconWeather from "@/components/IconWeather.vue";
 import { useStateStore } from "@/store/useStateStore";
 import { storeToRefs } from "pinia";
 import Skeleton from "@/widget/components/Skeleton.vue";
-import connectionError from "@/components/handleErrors/connectionError.vue";
-import is400 from "@/components/handleErrors/is400.vue";
+import errorResponse from "@/components/handleErrors/errorResponse.vue";
+import SearchCountry from "@/components/SearchCountry.vue";
 
 const { loading, location, current, error } = storeToRefs(useStateStore());
 </script>
@@ -35,6 +35,12 @@ const { loading, location, current, error } = storeToRefs(useStateStore());
   </div> -->
 
   <Skeleton v-if="loading" />
+
+  <div
+    v-else
+    class="grid bg-gray-300 place-content-center h-screen space-y-10 gap"
+  >
+    <SearchCountry />
 
     <div
       class="bg-slate-100 max-w-2xl h-96 rounded-3xl px-10 py-14 shadow-2xl shadow-slate-500 space-y-8"
