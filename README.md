@@ -2,7 +2,7 @@
 
 ### personal project
 
-I develope some simple weather application to search weather by country, state, or village keyword seacrh. i used [Weather API] to consume or get data of weather.
+I develope some simple weather application to search weather by country, state, or village keyword seacrh. i used [Weather API](https://www.weatherapi.com/docs/) to consume or get data of weather.
 
 # Tools
 
