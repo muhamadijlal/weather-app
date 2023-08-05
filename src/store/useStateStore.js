@@ -1,10 +1,17 @@
 import { defineStore } from "pinia";
+import axios from "axios";
+import { is400, is401, is403, is404 } from "@/utils/response.js";
 
 export const useStateStore = defineStore("weather", {
   state: () => ({
-    location: "",
-    response: 0,
+    country: "Indonesia",
+    location: {},
+    current: {},
     loading: false,
+    error: {
+      response: null,
+      errMsg: null,
+    },
   }),
   actions: {
     async fetchData() {
@@ -12,15 +19,15 @@ export const useStateStore = defineStore("weather", {
       await axios
         .get("http://api.weatherapi.com/v1/current.json", {
           params: {
-            key: "", // credential key
-            q: "London", // country
+            key: this.meta.env.VITE_KEY_WEATHERAPI, // credential key
+            q: this.country, // country
             aqi: "yes", // air quality
           },
         })
         .then((response) => {
           this.$state = {
-            data: response.data.location.name,
-            response: response.status,
+            location: response.data.location,
+            current: response.data.current,
           };
         })
         .catch((err) => {

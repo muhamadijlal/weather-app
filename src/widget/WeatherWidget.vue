@@ -14,25 +14,11 @@ const { loading, location, current, error } = storeToRefs(useStateStore());
 </script>
 
 <template>
-  <connection-error
-    v-show="error.response === 'ERR_NETWORK'"
+  <errorResponse
+    v-if="error.response"
+    :response="error.response"
     :errMsg="error.errMsg"
   />
-
-  <is400 v-show="error.response === 400" :errMsg="error.errMsg" />
-  <!-- <div
-    v-if="error"
-    class="grid place-content-center place-items-center h-screen bg-slate-100 space-y-5"
-  >
-    <svg xmlns="http://www.w3.org/2000/svg" height="12em" viewBox="0 0 640 512">
-      <path
-        d="M54.2 202.9C123.2 136.7 216.8 96 320 96s196.8 40.7 265.8 106.9c12.8 12.2 33 11.8 45.2-.9s11.8-33-.9-45.2C549.7 79.5 440.4 32 320 32S90.3 79.5 9.8 156.7C-2.9 169-3.3 189.2 8.9 202s32.5 13.2 45.2 .9zM320 256c56.8 0 108.6 21.1 148.2 56c13.3 11.7 33.5 10.4 45.2-2.8s10.4-33.5-2.8-45.2C459.8 219.2 393 192 320 192s-139.8 27.2-190.5 72c-13.3 11.7-14.5 31.9-2.8 45.2s31.9 14.5 45.2 2.8c39.5-34.9 91.3-56 148.2-56zm64 160a64 64 0 1 0 -128 0 64 64 0 1 0 128 0z"
-      />
-    </svg>
-    <h4 class="font-bold text-2xl text-gray-500">
-      {{ errMsg }}
-    </h4>
-  </div> -->
 
   <Skeleton v-if="loading" />
 
@@ -53,16 +39,23 @@ const { loading, location, current, error } = storeToRefs(useStateStore());
       </row>
 
       <row>
-        <city-weather
-          :location-name="weather.location.name"
-          :weather-condition="weather.current.condition.text"
-        />
+        <temperature-weather :tempC="current.temp_c" />
 
-        <icon-weather :weather-icon="weather.current.condition.icon" />
+        <detail-weather
+          :last-updated="current.last_updated"
+          :humidity="current.humidity"
+          :feelslikeC="current.feelslike_c"
+        />
       </row>
       <footer class="text-end text-slate-400 font-light">
-        {{ weather.current.last_updated }}
+        {{ current.last_updated }}
       </footer>
     </div>
   </div>
 </template>
+
+<style>
+svg {
+  fill: #6b7280;
+}
+</style>

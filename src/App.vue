@@ -1,7 +1,14 @@
 <script setup>
 import WeatherWidget from "@/widget/WeatherWidget.vue";
+import { useStateStore } from "@/store/useStateStore.js";
+
+const { fetchData } = useStateStore();
+
+fetchData();
 </script>
 
 <template>
-  <weather-widget />
+  <div>
+    <weather-widget />
+  </div>
 </template>

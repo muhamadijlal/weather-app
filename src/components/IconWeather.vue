@@ -1,3 +1,9 @@
+<script setup>
+defineProps({
+  weatherIcon: String,
+});
+</script>
+
 <template>
-  <h4 class="text-9xl">☀️</h4>
+  <img :src="'http:' + weatherIcon" alt="weather-icon" class="w-28" />
 </template>

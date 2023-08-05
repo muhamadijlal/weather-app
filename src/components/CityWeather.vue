@@ -1,6 +1,14 @@
+<script setup>
+defineProps({
+  locationCountry: String,
+  locationName: String,
+  weatherCondition: String,
+});
+</script>
+
 <template>
-  <h4 class="text-4xl text-slate-100 font-bold">
-    Delhi IN
-    <p class="text-2xl font-medium">Smoke</p>
+  <h4 class="text-4xl text-slate-800 font-bold">
+    <span>{{ locationCountry }} ({{ locationName }})</span>
+    <p class="text-xl font-medium text-slate-500">{{ weatherCondition }}</p>
   </h4>
 </template>
