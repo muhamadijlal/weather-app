@@ -19,7 +19,7 @@ export const useStateStore = defineStore("weather", {
       await axios
         .get("http://api.weatherapi.com/v1/current.json", {
           params: {
-            key: this.meta.env.VITE_KEY_WEATHERAPI, // credential key
+            key: import.meta.env.VITE_KEY_WEATHERAPI, // credential key
             q: this.country, // country
             aqi: "yes", // air quality
           },
